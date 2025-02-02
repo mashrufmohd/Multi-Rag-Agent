@@ -11,7 +11,7 @@ This project aims to demonstrate a **Multi-Agent AI System** that performs tasks
 
 Each agent is responsible for a specific task, ensuring that the multi-agent system efficiently handles complex workflows in areas like summarizing text, generating articles, and sanitizing data.
 
-![image](https://github.com/user-attachments/assets/8ffd4606-b7ea-4b78-8e55-357a8f5f052b)
+![image](https://github.com/user-attachments/assets/41f48b42-4c9a-4e42-b3f9-877f64201e83)
 
 
 ## Project Structure
