@@ -53,9 +53,11 @@ def main():
 
     # Add social media links (LinkedIn & GitHub)
     st.markdown("""
-    ## Connect with Me:
+    ## Connect with Project Maintainers 🤝:
     - [LinkedIn](https://www.linkedin.com/in/hitesh-kumar-aiml/) 🔗
     - [GitHub](https://github.com/Hiteshydv001) 🔗
+    - [LinkedIn](https://www.linkedin.com/in/mohd-mashruf/) 🔗
+    - [GitHub](https://github.com/mashrufmohd) 🔗
     """)
 
     # Sidebar with task selection
