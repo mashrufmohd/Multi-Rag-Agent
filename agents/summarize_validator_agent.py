@@ -1,21 +1,20 @@
 from .agent_base import AgentBase
 
-class SummarizeTool(AgentBase):
+class SummarizeValidatorAgent(AgentBase):  # <-- Correct class name
     def __init__(self, max_retries=3, verbose=True):
-        super().__init__(name="SummarizeTool", max_retries=max_retries, verbose=verbose)
+        super().__init__(name="SummarizeValidatorAgent", max_retries=max_retries, verbose=verbose)
 
     def execute(self, text):
-        """Generates a concise and structured summary of the given text."""
+        """Validates and refines a summary of the given text."""
         prompt = (
-            "You are an expert summarization AI. Your task is to generate a concise and informative summary "
-            "while preserving the key points and main ideas.\n\n"
+            "You are an expert summarization validator AI. Your task is to check if the summary accurately "
+            "captures the key points without missing important details.\n\n"
             "### Instructions:\n"
-            "- Keep the summary clear, structured, and to the point.\n"
-            "- Avoid redundancy and unnecessary details.\n"
-            "- Maintain the original meaning and important insights.\n\n"
-            f"### Original Text:\n{text}\n\n"
-            "### Summary:"
+            "- Ensure the summary is accurate and concise.\n"
+            "- Identify any missing key points or distortions.\n\n"
+            f"### Summary to Validate:\n{text}\n\n"
+            "### Validation:"
         )
 
-        summary = self.call_gemini(prompt, model="gemini-2-pro")
-        return summary
+        validation = self.call_gemini(prompt, model="gemini-2-pro")
+        return validation

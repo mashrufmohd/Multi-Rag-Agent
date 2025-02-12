@@ -27,6 +27,12 @@ class AgentBase(ABC):
         if not GEMINI_API_KEY:
             logger.error(f"[{self.name}] GEMINI_API_KEY is missing. Check Streamlit secrets.")
             raise ValueError("GEMINI_API_KEY is missing.")
+        
+        summary = self.call_gemini(prompt, model="gemini-2-pro")
+
+        if not summary:
+            print("API Response: No response received from Gemini API")
+            return "Error: Gemini API did not return a summary. Please check logs."
 
         retries = 0
         while retries < self.max_retries:
