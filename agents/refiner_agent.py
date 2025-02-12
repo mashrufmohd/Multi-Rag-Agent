@@ -7,12 +7,13 @@ class RefinerAgent(AgentBase):
     def execute(self, draft):
         """Refines a research article for clarity, coherence, and academic quality."""
         prompt = (
-            "You are an expert editor who refines and enhances research articles for clarity, coherence, "
-            "and academic quality.\n\n"
-            "Please refine the following research article draft to improve its language, coherence, "
-            "and overall quality:\n\n"
-            f"{draft}\n\nRefined Article:"
+            "You are a professional research editor. Your task is to refine and enhance research articles "
+            "for improved clarity, coherence, and academic rigor. Ensure the language is fluent, the arguments "
+            "are well-structured, and the overall readability is optimized.\n\n"
+            "### Original Research Article Draft:\n"
+            f"{draft}\n\n"
+            "### Refined Article (Well-structured, Concise, and Academic):"
         )
-        
-        refined_article = self.call_gemini(prompt, model="gemini-pro")
+
+        refined_article = self.call_gemini(prompt, model="gemini-2-pro")
         return refined_article

@@ -1,6 +1,7 @@
 import streamlit as st
 from agents import AgentManager
 import os
+from loguru import logger
 
 # Add custom styles to enhance UI
 def add_styles():
@@ -36,31 +37,34 @@ def main():
     st.set_page_config(page_title="Multi-Agent AI System", layout="wide")
     add_styles()
 
-    # Fetch environment variables using st.secrets
-    api_key = st.secrets["GEMINI_API_KEY"]  # Example of fetching a secret from Streamlit Secrets
+    # Fetch API Key from Streamlit secrets
+    api_key = st.secrets.get("GEMINI_API_KEY", None)
+    if not api_key:
+        st.error("GEMINI API Key is missing! Please configure it in Streamlit secrets.")
+        return
 
-    # Project explanation with emojis
+    # Project Explanation
     st.markdown("""
     # Multi-Agent AI System with Gemini 🤖✨
 
-    This project showcases a multi-agent AI system designed to perform tasks like:
+    This project features a **multi-agent AI system** designed to perform tasks such as:
     - **Text Summarization** ✍️
-    - **Research Article Writing** 📝
+    - **Research Article Writing & Refinement** 📝
     - **Data Sanitization** 🛡️
 
-    Powered by **Gemini**, this system enhances productivity and creativity by providing AI workflows for diverse use cases.
+    Powered by **Gemini**, it enhances productivity and automates complex AI workflows.
     """)
 
-    # Add social media links (LinkedIn & GitHub)
+    # Social Media Links
     st.markdown("""
     ## Connect with Project Maintainers 🤝:
-    - [LinkedIn](https://www.linkedin.com/in/hitesh-kumar-aiml/) 🔗
-    - [GitHub](https://github.com/Hiteshydv001) 🔗
-    - [LinkedIn](https://www.linkedin.com/in/mohd-mashruf/) 🔗
-    - [GitHub](https://github.com/mashrufmohd) 🔗
+    - [LinkedIn - Hitesh Kumar](https://www.linkedin.com/in/hitesh-kumar-aiml/) 🔗
+    - [GitHub - Hitesh Kumar](https://github.com/Hiteshydv001) 🔗
+    - [LinkedIn - Mohd Mashruf](https://www.linkedin.com/in/mohd-mashruf/) 🔗
+    - [GitHub - Mohd Mashruf](https://github.com/mashrufmohd) 🔗
     """)
 
-    # Sidebar with task selection
+    # Sidebar Task Selection
     st.sidebar.title("Select Task")
     task = st.sidebar.selectbox("Choose a task:", [
         "Summarize Text 📚",
@@ -68,8 +72,15 @@ def main():
         "Sanitize Data 🔒"
     ])
 
-    agent_manager = AgentManager(max_retries=2, verbose=True)
+    # Initialize AgentManager
+    try:
+        agent_manager = AgentManager(max_retries=2, verbose=True)
+    except Exception as e:
+        st.error(f"Error initializing AgentManager: {e}")
+        logger.error(f"AgentManager Initialization Error: {e}")
+        return
 
+    # Route to respective sections
     if task == "Summarize Text 📚":
         summarize_section(agent_manager)
     elif task == "Write and Refine Research Article 🖋️":
@@ -77,85 +88,88 @@ def main():
     elif task == "Sanitize Data 🔒":
         sanitize_data_section(agent_manager)
 
-# Function to handle Summarize Text task
+# Summarization Section
 def summarize_section(agent_manager):
     st.header("Summarize Text 📚")
     text = st.text_area("Enter text to summarize:", height=200)
     
     if st.button("Summarize"):
-        if text:
+        if text.strip():
             try:
-                main_agent = agent_manager.get_agent("summarize")
-                validator_agent = agent_manager.get_agent("summarize_validator")
-                
+                summarizer = agent_manager.get_agent("summarize")
+                validator = agent_manager.get_agent("summarize_validator")
+
                 with st.spinner("Summarizing..."):
-                    summary = main_agent.execute(f"Summarize the following text:\n{text}")
+                    summary = summarizer.execute(text)
                     st.subheader("Summary:")
                     st.write(summary)
 
                 with st.spinner("Validating summary..."):
-                    validation = validator_agent.execute(text, summary)
+                    validation = validator.execute(text, summary)
                     st.subheader("Validation:")
                     st.write(validation)
-            except Exception:
-                st.error("Cannot answer this one.")
+            except Exception as e:
+                st.error("Failed to generate summary. Please try again.")
+                logger.error(f"Summarization Error: {e}")
         else:
             st.warning("Please enter some text to summarize.")
 
-# Function to handle Write and Refine Research Article task
+# Research Article Section
 def write_and_refine_article_section(agent_manager):
     st.header("Write and Refine Research Article 🖋️")
     topic = st.text_input("Enter the topic for the research article:")
     outline = st.text_area("Enter an outline (optional):", height=150)
     
     if st.button("Write and Refine Article"):
-        if topic:
+        if topic.strip():
             try:
-                writer_agent = agent_manager.get_agent("write_article")
-                refiner_agent = agent_manager.get_agent("refiner")
-                validator_agent = agent_manager.get_agent("validator")
+                writer = agent_manager.get_agent("write_article")
+                refiner = agent_manager.get_agent("refiner")
+                validator = agent_manager.get_agent("validator")
 
                 with st.spinner("Writing article..."):
-                    draft = writer_agent.execute(f"Write a detailed research article about {topic}. Outline: {outline}")
+                    draft = writer.execute(topic, outline)
                     st.subheader("Draft Article:")
                     st.write(draft)
 
                 with st.spinner("Refining article..."):
-                    refined_article = refiner_agent.execute(f"Improve the following research article:\n{draft}")
+                    refined_article = refiner.execute(draft)
                     st.subheader("Refined Article:")
                     st.write(refined_article)
 
                 with st.spinner("Validating article..."):
-                    validation = validator_agent.execute(draft, refined_article)
+                    validation = validator.execute(topic, refined_article)
                     st.subheader("Validation:")
                     st.write(validation)
-            except Exception:
-                st.error("Cannot answer this one.")
+            except Exception as e:
+                st.error("Failed to process the article. Please try again.")
+                logger.error(f"Article Processing Error: {e}")
         else:
             st.warning("Please enter a topic for the research article.")
 
-# Function to handle Sanitize Data task
+# Data Sanitization Section
 def sanitize_data_section(agent_manager):
     st.header("Sanitize Data 🔒")
     raw_data = st.text_area("Enter data to sanitize:", height=200)
     
     if st.button("Sanitize Data"):
-        if raw_data:
+        if raw_data.strip():
             try:
-                main_agent = agent_manager.get_agent("sanitize_data")
-                validator_agent = agent_manager.get_agent("sanitize_data_validator")
+                sanitizer = agent_manager.get_agent("sanitize_data")
+                validator = agent_manager.get_agent("sanitize_data_validator")
 
                 with st.spinner("Sanitizing data..."):
-                    sanitized_data = main_agent.execute(f"Remove all sensitive data from the following:\n{raw_data}")
+                    sanitized_data = sanitizer.execute(raw_data)
                     st.subheader("Sanitized Data:")
                     st.write(sanitized_data)
 
                 with st.spinner("Validating sanitized data..."):
-                    validation = validator_agent.execute(raw_data, sanitized_data)
+                    validation = validator.execute(raw_data, sanitized_data)
                     st.subheader("Validation:")
                     st.write(validation)
-            except Exception:
-                st.error("Cannot answer this one.")
+            except Exception as e:
+                st.error("Failed to sanitize data. Please try again.")
+                logger.error(f"Data Sanitization Error: {e}")
         else:
             st.warning("Please enter data to sanitize.")
 
