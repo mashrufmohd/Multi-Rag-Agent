@@ -17,24 +17,70 @@ Each agent is responsible for a specific task, ensuring that the multi-agent sys
 ## Project Structure
 
 ```
-hiteshydv001-multi-agent-rag-tools/
-├── README.md
-├── app.py
-├── requirements.txt
-├── agents/
-│   ├── __init__.py
-│   ├── agent_base.py
-│   ├── refiner_agent.py
-│   ├── sanitize_data_tool.py
-│   ├── sanitize_data_validator_agent.py
-│   ├── summarize_tool.py
-│   ├── summarize_validator_agent.py
-│   ├── validator_agent.py
-│   ├── write_article_tool.py
-│   └── write_article_validator_agent.py
-└── utils/
-    ├── __init__.py
-    └── logger.py
+Directory structure:
+└── mashrufmohd-multi-rag-agent/
+    ├── README.md
+    ├── app.py
+    ├── requirements.txt
+    ├── server.py
+    ├── agents/
+    │   ├── __init__.py
+    │   ├── agent_base.py
+    │   ├── refiner_agent.py
+    │   ├── sanitize_data_tool.py
+    │   ├── sanitize_data_validator_agent.py
+    │   ├── summarize_tool.py
+    │   ├── summarize_validator_agent.py
+    │   ├── validator_agent.py
+    │   ├── write_article_tool.py
+    │   └── write_article_validator_agent.py
+    ├── frontend/
+    │   ├── README.md
+    │   ├── components.json
+    │   ├── eslint.config.mjs
+    │   ├── next.config.ts
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── postcss.config.mjs
+    │   ├── tailwind.config.ts
+    │   ├── tsconfig.json
+    │   ├── .gitignore
+    │   ├── public/
+    │   └── src/
+    │       ├── app/
+    │       │   ├── globals.css
+    │       │   ├── layout.tsx
+    │       │   ├── page.tsx
+    │       │   ├── sanitize/
+    │       │   │   └── page.tsx
+    │       │   ├── summarize/
+    │       │   │   └── page.tsx
+    │       │   └── write_article/
+    │       │       └── page.tsx
+    │       ├── components/
+    │       │   ├── main-nav.tsx
+    │       │   ├── theme-provider.tsx
+    │       │   └── ui/
+    │       │       ├── button.tsx
+    │       │       ├── card.tsx
+    │       │       ├── dialog.tsx
+    │       │       ├── dropdown-menu.tsx
+    │       │       ├── form.tsx
+    │       │       ├── input.tsx
+    │       │       ├── label.tsx
+    │       │       ├── select.tsx
+    │       │       ├── tabs.tsx
+    │       │       ├── textarea.tsx
+    │       │       ├── toast.tsx
+    │       │       └── toaster.tsx
+    │       ├── hooks/
+    │       │   └── use-toast.ts
+    │       └── lib/
+    │           └── utils.ts
+    └── utils/
+        ├── __init__.py
+        └── logger.py
+
 ```
 
 ## Features
