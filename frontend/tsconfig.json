@@ -23,7 +23,7 @@
         "src/*"
       ],
       "@/lib/*": [
-        "src/app/lib/*"
+        "src/lib/*"
       ]
     },
     "plugins": [

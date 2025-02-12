@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/app/lib/utils"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
