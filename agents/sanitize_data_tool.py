@@ -15,5 +15,5 @@ class SanitizeDataTool(AgentBase):
             "### Sanitized Data (No PII, Confidential, or Sensitive Info):"
         )
 
-        sanitized_data = self.call_gemini(prompt, model="gemini-2-pro")
+        sanitized_data = self.call_gemini(prompt, model="gemini-1.5-flash")
         return sanitized_data
