@@ -1,23 +1,23 @@
-Multi-Agent RAG Tools
-======================
+🚀 Multi-Agent RAG Tools
+========================
 
-## Project Overview
+🌟 Project Overview
+-------------------
 
-This project aims to demonstrate a **Multi-Agent AI System** that performs tasks related to:
+Welcome to **Multi-Agent RAG Tools**, a powerful AI-driven system designed to streamline complex workflows using multiple intelligent agents. Our system efficiently handles:
 
-- **Text Summarization** ✍️
-- **Research Article Writing** 📝
-- **Data Sanitization** 🛡️
+📌 **Text Summarization** ✍️ – Get concise summaries of any text, saving time and enhancing readability.📌 **Research Article Writing** 📝 – Generate and refine high-quality research articles with AI-driven assistance.📌 **Data Sanitization** 🛡️ – Ensure privacy and compliance by detecting and removing sensitive data.
 
-Each agent is responsible for a specific task, ensuring that the multi-agent system efficiently handles complex workflows in areas like summarizing text, generating articles, and sanitizing data.
+This project employs **Retrieval-Augmented Generation (RAG)** and **Multi-Agent AI techniques** to divide complex tasks among specialized agents, improving efficiency, accuracy, and scalability.
 
+### Preview: 
 ![image](https://github.com/user-attachments/assets/41f48b42-4c9a-4e42-b3f9-877f64201e83)
 
-
-## Project Structure
+#
+📂 Project Structure
+--------------------
 
 ```
-Directory structure:
 └── mashrufmohd-multi-rag-agent/
     ├── README.md
     ├── app.py
@@ -80,60 +80,77 @@ Directory structure:
     └── utils/
         ├── __init__.py
         └── logger.py
+```
+#
+✨ Features
+----------
+
+✅ **Summarize Text** 📚 – Generate concise summaries of any text, making it easier to digest information.
+
+✅ **Write & Refine Research Articles** 🖋️ – AI-powered content generation that enhances writing quality.
+
+✅ **Sanitize Data** 🔒 – Identify and remove sensitive or personally identifiable information for security and compliance.
+#
+🛠️ Installation Guide
+----------------------
+
+🔹 Clone the repository:
 
 ```
+    git clone https://github.com/Hiteshydv001/Multi-agent-RAG-tools.git  
+    cd Multi-agent-RAG-tools  
+```
 
-## Features
+🔹 Install dependencies:
 
-- **Summarize Text**: Summarize any provided text efficiently.
-- **Write and Refine Research Articles**: Automatically generate and refine research articles.
-- **Sanitize Data**: Clean and sanitize sensitive data for privacy.
+```
+   pip install -r requirements.txt   
+   ```
 
-## Installation
+🚀 Running the Application
+--------------------------
 
-1. Clone the repository:
+Run the **Streamlit application** with:
 
-    ```bash
-    git clone https://github.com/Hiteshydv001/Multi-agent-RAG-tools.git
-    cd Multi-agent-RAG-tools
-    ```
+`
+   streamlit run app.py   
+   `
 
-2. Install dependencies:
+🔹 Open the web interface in your browser and choose a task from the sidebar:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+*   📚 **Summarize Text**
+*   🖋️ **Write & Refine Research Articles**
+*   🔒 **Sanitize Data**
+    
+#
+🤖 Agents
+---------
 
-## Running the Application
+This system consists of multiple AI agents specialized for different tasks:
 
-1. To run the Streamlit application, execute the following command:
+🔹 **SummarizeTool** 📜 – Extracts key points and condenses lengthy text into readable summaries.
 
-    ```bash
-    streamlit run app.py
-    ```
+🔹 **WriteArticleTool** ✍️ – Uses AI-driven techniques to generate well-structured research articles.
 
-2. Open the web interface in your browser and select a task from the sidebar:
-    - **Summarize Text 📚**
-    - **Write and Refine Research Article 🖋️**
-    - **Sanitize Data 🔒**
+🔹 **SanitizeDataTool** 🔐 – Cleans data by removing confidential or sensitive information.
 
-## Agents
+🔹 **RefinerAgent** 🛠️ – Enhances clarity, coherence, and overall quality of generated articles.
 
-The system is composed of the following agents:
+🔹 **ValidatorAgent** ✅ – Ensures research articles meet quality and relevance criteria.
 
-1. **SummarizeTool**: Summarizes text efficiently.
-2. **WriteArticleTool**: Generates research articles.
-3. **SanitizeDataTool**: Sanitizes sensitive data.
-4. **RefinerAgent**: Refines and improves research articles for clarity and quality.
-5. **ValidatorAgent**: Validates the quality and relevance of research articles.
-6. **SummarizeValidatorAgent**: Validates the quality and accuracy of text summaries.
-7. **SanitizeDataValidatorAgent**: Ensures the sanitization of sensitive data is successful.
+🔹 **SummarizeValidatorAgent** 🔍 – Checks the accuracy and completeness of text summaries.
 
-## License
+🔹 **SanitizeDataValidatorAgent** 🛡️ – Validates the effectiveness of data sanitization techniques.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+#
 
-## Connect with Me
+🔗 Connect with Us!
+-------------------
 
-- [LinkedIn](https://www.linkedin.com/in/hitesh-kumar-aiml/) 🔗
-- [GitHub](https://github.com/Hiteshydv001) 🔗
+* 📌 [**LinkedIn**](https://www.linkedin.com/in/hitesh-kumar-aiml/)🔗
+* 📌 [**GitHub**](https://github.com/Hiteshydv001)🔗
+
+🎉 _Happy Coding!_ 🚀
+
+
+
