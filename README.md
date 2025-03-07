@@ -1,5 +1,5 @@
-
-# Multi-Agent RAG Tools
+Multi-Agent RAG Tools
+======================
 
 ## Project Overview
 
