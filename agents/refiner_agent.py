@@ -15,5 +15,5 @@ class RefinerAgent(AgentBase):
             "### Refined Article (Well-structured, Concise, and Academic):"
         )
 
-        refined_article = self.call_gemini(prompt, model="gemini-2-pro")
+        refined_article = self.call_gemini(prompt, model="gemini-1.5-flash")
         return refined_article

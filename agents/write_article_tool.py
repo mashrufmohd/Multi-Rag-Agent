@@ -22,5 +22,5 @@ class WriteArticleTool(AgentBase):
         prompt += "### Research Article:\n"
 
         # Call Gemini to generate the article
-        article = self.call_gemini(prompt, model="gemini-2-pro")
+        article = self.call_gemini(prompt, model="gemini-1.5-flash")
         return article

@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from loguru import logger
 import streamlit as st
 import time
+from utils.logger import measure_response_time
 
 # Configure Gemini API using Streamlit secrets
 GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY")
@@ -12,6 +13,16 @@ if GEMINI_API_KEY:
 else:
     logger.error("GEMINI_API_KEY is missing! Make sure to set it in Streamlit secrets.")
 
+class AgentBase:
+    def __init__(self):
+        pass
+
+    @measure_response_time
+    def process_request(self, input_data):
+        # Simulate processing delay
+        time.sleep(1)  
+        return {"response": "Processed data"}
+    
 class AgentBase(ABC):
     def __init__(self, name, max_retries=3, verbose=True):
         self.name = name
@@ -22,13 +33,13 @@ class AgentBase(ABC):
     def execute(self, *args, **kwargs):
         pass
 
-    def call_gemini(self, prompt, model="gemini-2-pro"):
+    def call_gemini(self, prompt, model="gemini-1.5-flash"):
         """Calls Gemini AI to generate a response based on the given prompt."""
         if not GEMINI_API_KEY:
             logger.error(f"[{self.name}] GEMINI_API_KEY is missing. Check Streamlit secrets.")
             raise ValueError("GEMINI_API_KEY is missing.")
         
-        summary = self.call_gemini(prompt, model="gemini-2-pro")
+        summary = self.call_gemini(prompt, model="gemini-1.5-flash")
 
         if not summary:
             print("API Response: No response received from Gemini API")

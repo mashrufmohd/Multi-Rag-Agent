@@ -21,5 +21,5 @@ class SanitizeDataValidatorAgent(AgentBase):
             "- Suggested Improvements:"
         )
 
-        validation = self.call_gemini(prompt, model="gemini-2-pro")
+        validation = self.call_gemini(prompt, model="gemini-1.5-flash")
         return validation
