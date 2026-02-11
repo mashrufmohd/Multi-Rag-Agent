@@ -38,7 +38,7 @@ numpy==2.2.2
 openai==1.61.0
 packaging==24.2
 pandas==2.2.3
-pillow==11.1.0
+pillow==12.1.1
 proto-plus==1.26.0
 protobuf==5.29.3
 pyarrow==19.0.0
